@@ -5,6 +5,7 @@ import subprocess
 import sys
 import traceback
 
+import moor
 from moor.config import BuildContext
 
 DOCKER_PS_REGEX = re.compile(r'^([a-f0-9]{12})\s+(.*?)\s+.*$')
@@ -94,6 +95,7 @@ def _find_old_images(ctx: BuildContext):
 def parse_commandline():
     parser = argparse.ArgumentParser()
     parser.add_argument('--debug', action='store_true', help='Enable extra debugging')
+    parser.add_argument('-v', '--version', action='store_true', help='Print the version and exit')
     subparsers = parser.add_subparsers()
 
     parser_build = subparsers.add_parser('build', help='Builds a docker image')
@@ -152,9 +154,15 @@ def run_remove_old(args):
 
 
 def main():
+    exit_code = 1
+
     parser, args = parse_commandline()
 
-    exit_code = 1
+    # quick exit for just the version
+    if args.version:
+        print('v' + moor.__version__)
+        return
+
     try:
         if hasattr(args, 'handler'):
             ret = args.handler(args)

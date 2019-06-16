@@ -1,11 +1,12 @@
 from setuptools import setup, find_packages
+import moor
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setup(
     name="moor",
-    version="0.0.1",
+    version=moor.__version__,
     author="Ed FitzGerald",
     author_email="edward.fitzgerald@fetch.ai",
     description="A commandline tool for managing docker builds",
