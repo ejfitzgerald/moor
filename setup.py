@@ -8,7 +8,7 @@ setup(
     version="0.0.1",
     author="Ed FitzGerald",
     author_email="edward.fitzgerald@fetch.ai",
-    description="A small example package",
+    description="A commandline tool for managing docker builds",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/ejfitzgerald/moor",
